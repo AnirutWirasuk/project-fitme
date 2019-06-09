@@ -123,6 +123,26 @@ class Main extends CI_Controller {
 		$this->template->frontend('knowledgemain/knowledgedetail',$data);
 	}
 
+	public function team(){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('ad_show' => 1);
+		$condition['orderby'] = "ab_id ASC";
+		$data['listAbout'] = $this->main->listAbout($condition);
+		$this->template->frontend('main/team',$data);
+	}
+
+	public function physicaltherapy(){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('ad_show' => 1);
+		$condition['orderby'] = "ab_id ASC";
+		$data['listAbout'] = $this->main->listAbout($condition);
+		$this->template->frontend('main/physicaltherapy',$data);
+	}
+
 	private function upfile($File_img){
 		$fileold = $this->input->post($File_img.'_old');
 		if(!empty($_FILES[$File_img])){
