@@ -112,13 +112,14 @@ class Main extends CI_Controller {
 		$this->template->frontend('knowledgemain/maindetail',$data);
 	}
 
-	public function knowledgedetail($id){
+	public function knowledgedetail($dis_id,$id){
 		$data = array();
 		$condition = array();
 		$condition['fide'] = "*";
 		$condition['where'] = array('tip_id' => $id);
 		$condition['orderby'] = "tip_id ASC";
 		$data['listKnowledge'] = $this->main->listKnowledge($condition);
+		$data['dis_id'] = $dis_id;
 		$this->template->frontend('knowledgemain/knowledgedetail',$data);
 	}
 

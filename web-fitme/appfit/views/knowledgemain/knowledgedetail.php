@@ -1,11 +1,11 @@
 <?PHP 
-    if(count($listNews) != 0){
-        foreach ($listNews as $key => $value) {
-            $news_imgcover = $value['news_imgcover'];
-            $news_title = $value['news_title'];
-            $news_detail = $value['news_detail'];
-            $news_createdate = $value['news_createdate'];
-            $news_createname = $value['news_createname'];
+    if(count($listKnowledge) != 0){
+        foreach ($listKnowledge as $key => $value) {
+            $tip_imgcover = $value['tip_imgcover'];
+            $tip_title = $value['tip_title'];
+            $tip_detail = $value['tip_detail'];
+            $tip_createdate = $value['tip_createdate'];
+            $tip_createname = $value['tip_createname'];
         }
     }
 ?>
@@ -29,26 +29,29 @@
                     <!-- Entry Title
                     ============================================= -->
                     <div class="entry-title">
-                        <h2><?=$news_title;?></h2>
+                        <h2><?=$tip_title;?></h2>
                     </div><!-- .entry-title end -->
 
                     <!-- Entry Meta
                     ============================================= -->
                     <ul class="entry-meta clearfix">
-                        <li><i class="icon-calendar3"></i> <?=date('d/m/Y', strtotime($news_createdate));?></li>
-                        <li><a href="#"><i class="icon-user"></i> <?=$news_createname;?></a></li>
+                        <li><i class="icon-calendar3"></i> <?=date('d/m/Y', strtotime($tip_createdate));?></li>
+                        <li><a href="#"><i class="icon-user"></i> <?=$tip_createname;?></a></li>
                     </ul><!-- .entry-meta end -->
 
                     <!-- Entry Image
                     ============================================= -->
                     <div class="entry-image">
-                        <a href="#"><img src="<?=base_url('uploads/news/'.$news_imgcover);?>" alt="Blog Single"></a>
+                        <a href="#"><img src="<?=base_url('uploads/tip/'.$tip_imgcover);?>" alt="Blog Single"></a>
                     </div><!-- .entry-image end -->
 
                     <!-- Entry Content
                     ============================================= -->
                     <div class="entry-content notopmargin">
-                        <p><?=$news_detail;?></p>
+                        <p><?=$tip_detail;?></p>
+                    </div>
+                    <div>
+                        <a href="<?=site_url('main/disdetail/'.$dis_id);?>" class="button button-rounded button-reveal button-large button-red tright"><i class="icon-angle-right"></i><span>กลับ</span></a>
                     </div>
                 </div><!-- .entry end -->
 
