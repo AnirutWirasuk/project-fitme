@@ -38,7 +38,7 @@
 	<!-- Document Wrapper
 	============================================= -->
 	<div id="wrapper" class="clearfix">
-		
+		<?= $contents ?>
 	</div><!-- #wrapper end -->
 
 	<!-- Go To Top

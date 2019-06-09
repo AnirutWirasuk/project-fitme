@@ -6,7 +6,6 @@ class Main extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model("main_model","main");
-		$this->load->library('getlanguage');
 		$this->load->helper('fileexist');
 	}
 
@@ -80,7 +79,47 @@ class Main extends CI_Controller {
 		$condition['where'] = array('news_show' => 1);
 		$condition['orderby'] = "news_id ASC";
 		$data['listNews'] = $this->main->listNews($condition);
-		$this->template->frontend('news/main',$data);
+		$this->template->frontend('newsmain/main',$data);
+	}
+
+	public function newsdetail($id){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('news_show' => 1,'news_id' => $id);
+		$condition['orderby'] = "news_id ASC";
+		$data['listNews'] = $this->main->listNews($condition);
+		$this->template->frontend('newsmain/newsdetail',$data);
+	}
+
+	public function knowledge(){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('dis_show' => 1);
+		$condition['orderby'] = "dis_sort ASC";
+		$data['listDisease'] = $this->main->listDisease($condition);
+		$this->template->frontend('knowledgemain/main',$data);
+	}
+
+	public function disdetail($id){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('dis_id' => $id);
+		$condition['orderby'] = "tip_id ASC";
+		$data['listKnowledge'] = $this->main->listKnowledge($condition);
+		$this->template->frontend('knowledgemain/maindetail',$data);
+	}
+
+	public function knowledgedetail($id){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('tip_id' => $id);
+		$condition['orderby'] = "tip_id ASC";
+		$data['listKnowledge'] = $this->main->listKnowledge($condition);
+		$this->template->frontend('knowledgemain/knowledgedetail',$data);
 	}
 
 	private function upfile($File_img){
