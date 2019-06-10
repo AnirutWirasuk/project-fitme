@@ -135,12 +135,59 @@ class Main extends CI_Controller {
 
 	public function physicaltherapy(){
 		$data = array();
+		if($this->input->post('MM_From') == "MM_From"){
+			$top = $this->input->post('top');
+			$low = $this->input->post('low');
+			if($top >= 140 && $low >= 90){
+				$data['msg'] = "ค่าความดันสูง ไม่สามารถทำการกายภาพได้";
+			}else if($top <= 89 && $low <= 70){
+				$data['msg'] = "ค่าความดันต่ำ ไม่สามารถทำการกายภาพได้";
+			}else{
+				redirect('/main/listcategory', 'refresh');
+			}
+		}
+		$this->template->frontend('main/physicaltherapy',$data);
+	}
+
+	public function listcategory(){
+		$data = array();
 		$condition = array();
 		$condition['fide'] = "*";
-		$condition['where'] = array('ad_show' => 1);
-		$condition['orderby'] = "ab_id ASC";
-		$data['listAbout'] = $this->main->listAbout($condition);
-		$this->template->frontend('main/physicaltherapy',$data);
+		$condition['where'] = array('cate_show' => 1);
+		$condition['orderby'] = "cate_id ASC";
+		$data['listCategory'] = $this->main->listCategory($condition);
+		$this->template->frontend('main/listcategory',$data);
+	}
+
+	public function listtype($cate_id){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('type_show' => 1);
+		$condition['orderby'] = "type_id ASC";
+		$data['listType'] = $this->main->listType($condition);
+		$data['cate_id'] = $cate_id;
+		$this->template->frontend('main/listtype',$data);
+	}
+
+	public function listvideo($cate_id,$type_id){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('med_show' => 1);
+		$condition['orderby'] = "med_id ASC";
+		$data['listMedia'] = $this->main->listMedia($condition);
+		$this->template->frontend('main/listvideo',$data);
+	}
+
+	public function listvideodetail($med_id){
+		$data = array();
+		$condition = array();
+		$condition['fide'] = "*";
+		$condition['where'] = array('med_show' => 1,'med_id' => $med_id);
+		$condition['orderby'] = "med_id ASC";
+		$data['listMedia'] = $this->main->listMedia($condition);
+		$this->template->frontend('main/listvideodetail',$data);
 	}
 
 	private function upfile($File_img){
